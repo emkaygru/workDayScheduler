@@ -6,6 +6,8 @@ let currentTime = m.hour();
 let buttons = document.getElementsByClassName('saveBtn');
 // empty array for the schedule blocks
 let scheduleBlocks = [];
+
+
 // variables for the time blocks on the schedule 
 var nine = m.hour(9);
 $("#nine").html('9AM');
@@ -47,19 +49,26 @@ viewSchedule();
 // add a class for past, present and future events/appointments for the day
 function viewSchedule() {
     $('div .hour').each(function () {
-        var hourOptions = parseInt($(this).attr("id").split("-")[1]);
-        if (hourOptions < currentTime) {
-            $(this).addClass("past");
-            $(this).removeClass("present", "future");
-        } else if (hourOptions === currentTime) {
-            $(this).addClass("present");
-        } else {
-            $(this).addClass("future");
-            $(this).removeClass("past", "present")
+        var hour = parseInt($(this).attr("id").split("-")[1]);
+        // .split("-")[1];
+        for (i = 0; i < 23; i++) {
+            let currentContainer = i;
+
+            if (currentTime === i) {
+                $('.' + currentContainer).addClass('present');
+            } else if (currentTime > i) {
+                $('.' + currentContainer).addClass('past');
+            } else {
+                $('.' + currentContainer).addClass('future');
+            }
         }
+
     })
 
 };
+
+
+
 
 // grab items from local storage 
 var storedScheduleItems = JSON.parse(localStorage.getItem("scheduleBlocks"));
