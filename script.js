@@ -52,7 +52,7 @@ $(document).ready(function () {
 
 
         function changeColor() {
-            for (i = 0; i <= 23; i++) {
+            for (i = 9; i <= 17; i++) {
                 let hour = document.getElementsByClassName('hour');
 
                 if (hour === currentTime) {
