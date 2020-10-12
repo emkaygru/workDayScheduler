@@ -52,37 +52,26 @@ $(document).ready(function () {
 
 
         function changeColor() {
-            for (i = 9; i <= 17; i++) {
-                let scheduleTime = moment().hour();
-                scheduleTime = i;
+            for (i = 0; i <= 23; i++) {
+                let hour = document.getElementsByClassName('hour');
 
-                if (currentTime === i) {
-                    $('.inputText' + i).addClass('present');
+                if (hour === currentTime) {
+                    $('div.inputText').addClass('present').removeClass('future').removeClass('past');
 
-                } else if (currentTime > i) {
-                    $('.inputText' + i).addClass('past');
+                } else if (hour > currentTime) {
+                    $('div.inputText').addClass('past');
 
                 } else {
-                    $('.inputText' + i).addClass('future');
+                    $('div.inputText').addClass('future').removeClass('past').removeClass('present');
 
                 }
             }
+
         }
 
         changeColor();
-        // $(document.body).click(function () {
 
-        //     $("div.inputText").each(function (i) {
-        //         if (hour === currentTime) {
-        //             $(this).addClass('present').removeClass('future').removeClass('past');
-        //         } else if (hour > currentTime) {
-        //             $(this).addClass('past');
-        //         } else {
-        //             $(this).addClass('future').removeClass('past').removeClass('present');
 
-        //         }
-        //     });
-        // });
 
     }
     viewSchedule();
@@ -120,19 +109,3 @@ $('.saveBtn').click(function () {
 
 
 });
-
-
-
-
-
-// THEN the current day is displayed at the top of the calendar
-// WHEN I scroll down
-// THEN I am presented with timeblocks for standard business hours
-// WHEN I view the timeblocks for that day
-// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-// WHEN I click into a timeblock
-// THEN I can enter an event
-// WHEN I click the save button for that timeblock
-// THEN the text for that event is saved in local storage
-// WHEN I refresh the page
-// THEN the saved events persist
