@@ -5,12 +5,16 @@ body {
 }
 
 textarea {
-  background: transparent;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   resize: none;
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+}
+
+.form-control {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .jumbotron {
