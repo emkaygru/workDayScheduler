@@ -2,16 +2,8 @@
 let m = moment();
 // current time/hour
 let currentTime = m.format('h:mma');
-
 // empty array for the schedule blocks
-let tempStorage = [];
-let apptText = '';
-let apptTime = '';
-
 let timeBlockContainer = document.getElementsByClassName('time-block');
-
-var storedAppointments;
-var returnedAppointments;
 
 // variables for the time blocks on the schedule 
 var nine = $("#9");
@@ -24,95 +16,56 @@ var fifteen = $('#15');
 var sixteen = $('#16');
 var seventeen = $('#17');
 
-
 // display the time at the top of the schedule - time and date
-let date = m.format("dddd MMM Do");
+function currentDate() {
 
-$(document).ready(function () {
-    $('#currentDay').html(`${date}`);
+    $("#currentDay").text(moment().format("dddd MMMM Do"));
     $('#currentTime').html(`${currentTime}`);
 
-    // console.log(localStorage);
-
-    function viewSchedule() {
-
-        storedAppointments = JSON.parse(localStorage.getItem('scheduleBlocks'));
-
-        if (storedAppointments !== null) {
-            for (i = 0; i < storedAppointments.length; i++) {
-                returnedAppointments = storedAppointments[i];
-                details = returnedAppointments.details;
-                timeIndex = returnedAppointments.time;
-
-                if (details !== null) {
-                    $("#" + timeIndex).children('div').children('div').children('textarea').val(details);
-                }
-            }
-
-        }
 
 
-        function changeColor() {
-            // for (i = 9; i <= 17; i++) {
-            // let currentTime = new Date.getHours();
-
-            // var hour = parseInt($(this).attr("id"));
-            // let hour = parseInt(document.getElementsByClassName('time-block')[i].id);
-            // let hour = document.getElementsByClassName('hour');
-            hour = m.hours();
-            $(".time-block").each(function () {
-                var thisHour = parseInt($(this).attr("id"));
-                if (hour > currentTime) {
-                    $(this).addClass('future');
-
-                } else if (hour === currentTime) {
-                    $(this).addClass('present');
-
-                } else {
-                    $(this).addClass('past');
-
-                }
-                console.log(hour);
-            })
-        };
-
-        changeColor();
+}
+currentDate();
 
 
 
+
+// add to localStorage
+$(".time-block").each(function () {
+    var id = $(this).attr("id");
+    var schedule = localStorage.getItem(id);
+
+    if (schedule !== null) {
+        $(this).children(".schedule").val(schedule);
     }
-    viewSchedule();
 });
 
 
-// add a class for past, present and future events/appointments for the day
-let time = document.getElementsByClassName('display-time');
-let data = document.getElementsByClassName('inputText');
 
-// localStorage.setItem("scheduleBlocks " + time, data);
-$('.saveBtn').click(function () {
-    apptText = $(this).parent('div').children('div').children('textarea').val();
-    apptTime = $(this).parent('div').parent().attr('id');
-    let appointment = {
-        time: apptTime,
-        details: apptText
-    };
+function changeColor() {
 
-    tempStorage = JSON.parse(localStorage.getItem('scheduleBlocks'));
-    localStorage.setItem('scheduleBlocks', JSON.stringify([{
-        time: apptTime,
-        details: apptText
-    }]));
-    if (tempStorage === null) {
-        localStorage.setItem('scheduleBlocks', JSON.stringify([{
-            time: apptTime,
-            details: apptText
-        }]));
-    } else {
-        tempStorage.push(appointment);
-        localStorage.setItem('scheduleBlocks', JSON.stringify(tempStorage));
-    }
-    $(this).parent('div').children('div').children('textarea').replaceWith($('<textarea>' + apptText + '</textarea>').addClass('textAreaInput'));
+    hour = m.hours();
+    $(".time-block").each(function () {
+        var thisHour = parseInt($(this).attr("id"));
+        if (thisHour > currentTime) {
+            $(this).addClass('future');
 
+        } else if (thisHour === currentTime) {
+            $(this).addClass('present');
+        } else {
+            $(this).addClass('past');
+        }
+        console.log(hour);
+    });
+}
+changeColor();
 
+// save button class as a variable
+var saveBtn = $(".saveBtn");
+//on click function
+saveBtn.on("click", function () {
+    var time = $(this).parent().attr("id");
+    var schedule = $(this).siblings(".schedule").val();
+
+    localStorage.setItem(time, schedule);
 });

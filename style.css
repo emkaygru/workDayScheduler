@@ -4,6 +4,7 @@ body {
   line-height: 1;
 }
 
+
 textarea {
   background-color: rgba(0, 0, 0, 0);
   border: none;
@@ -11,6 +12,9 @@ textarea {
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-control {
@@ -38,13 +42,17 @@ textarea {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
-  ;
+
 }
 
 .hour {
-  background-color: #ffffff;
-  color: #000000;
-  border-top: 1px dashed #000000;
+  background-color: rgba(108, 108, 108, 0.587);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .past {
