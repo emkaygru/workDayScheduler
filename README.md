@@ -1,4 +1,8 @@
-# Day Planner 
+# workDay Scheduler
+### Homework #5 for MSU Web Dev Bootcamp
+
+## Link to Deployed App
+[Today’s Schedule](https://emkaygru.github.io/workDayScheduler/)
 
 ## How it Works
 * Make a calendar to represent the workday: 9AM-5PM.
