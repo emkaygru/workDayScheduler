@@ -24,6 +24,7 @@ var thirteen = $('#fifteen').html('3PM');
 var thirteen = $('#sixteen').html('4PM');
 var thirteen = $('#seventeen').html('5PM');
 
+
 // display the time at the top of the schedule - time and date
 let date = m.format("dddd MMM Do");
 
@@ -53,20 +54,23 @@ $(document).ready(function () {
 
         function changeColor() {
             for (i = 9; i <= 17; i++) {
+                // let currentTime = new Date.getHours();
+
+                // let hour = parseInt(document.getElementsByClassName('time-block')[0].id);
                 let hour = document.getElementsByClassName('hour');
 
                 if (hour === currentTime) {
                     $('div.inputText').addClass('present').removeClass('future').removeClass('past');
 
-                } else if (hour > currentTime) {
+                } else if (hour < currentTime) {
                     $('div.inputText').addClass('past');
 
                 } else {
                     $('div.inputText').addClass('future').removeClass('past').removeClass('present');
 
                 }
+                console.log(hour);
             }
-
         }
 
         changeColor();
