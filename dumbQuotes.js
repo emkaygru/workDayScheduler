@@ -1,1 +1,0 @@
-let dumbQuotes = ['The Best things in life are actually really expensive...', 'You have as many hours in a day as Beyonce... what you don\'t have are the looks, the money, or the talent...', 'Smile! Tomorrow is going to be worse!', 'Do Less. Sleep More.']
