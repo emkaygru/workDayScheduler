@@ -44,18 +44,19 @@ $(".time-block").each(function () {
 
 function changeColor() {
 
-    hour = m.hours();
+
     $(".time-block").each(function () {
+        hour = m.hours();
         var thisHour = parseInt($(this).attr("id"));
-        if (thisHour > currentTime) {
+        if (thisHour > hour) {
             $(this).addClass('future');
 
-        } else if (thisHour === currentTime) {
+        } else if (thisHour === hour) {
             $(this).addClass('present');
         } else {
             $(this).addClass('past');
         }
-        console.log(hour);
+        // console.log(hour);
     });
 }
 changeColor();
