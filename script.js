@@ -14,15 +14,15 @@ var storedAppointments;
 var returnedAppointments;
 
 // variables for the time blocks on the schedule 
-var nine = $("#nine").html('9AM');
-var ten = $('#ten').html('10AM');
-var eleven = $('#eleven').html('11AM');
-var twelve = $('#twelve').html('12PM');
-var thirteen = $('#thirteen').html('1PM');
-var thirteen = $('#fourteen').html('2PM');
-var thirteen = $('#fifteen').html('3PM');
-var thirteen = $('#sixteen').html('4PM');
-var thirteen = $('#seventeen').html('5PM');
+var nine = $("#9");
+var ten = $('#10');
+var eleven = $('#11');
+var twelve = $('#12');
+var thirteen = $('#13');
+var fourteen = $('#14');
+var fifteen = $('#15');
+var sixteen = $('#16');
+var seventeen = $('#17');
 
 
 // display the time at the top of the schedule - time and date
@@ -53,25 +53,28 @@ $(document).ready(function () {
 
 
         function changeColor() {
-            for (i = 9; i <= 17; i++) {
-                // let currentTime = new Date.getHours();
+            // for (i = 9; i <= 17; i++) {
+            // let currentTime = new Date.getHours();
 
-                // let hour = parseInt(document.getElementsByClassName('time-block')[0].id);
-                let hour = document.getElementsByClassName('hour');
+            // var hour = parseInt($(this).attr("id"));
+            // let hour = parseInt(document.getElementsByClassName('time-block')[i].id);
+            // let hour = document.getElementsByClassName('hour');
+            hour = m.hours();
+            $(".time-block").each(function () {
+                var thisHour = parseInt($(this).attr("id"));
+                if (hour > currentTime) {
+                    $(this).addClass('future');
 
-                if (hour === currentTime) {
-                    $('div.inputText').addClass('present').removeClass('future').removeClass('past');
-
-                } else if (hour < currentTime) {
-                    $('div.inputText').addClass('past');
+                } else if (hour === currentTime) {
+                    $(this).addClass('present');
 
                 } else {
-                    $('div.inputText').addClass('future').removeClass('past').removeClass('present');
+                    $(this).addClass('past');
 
                 }
                 console.log(hour);
-            }
-        }
+            })
+        };
 
         changeColor();
 
